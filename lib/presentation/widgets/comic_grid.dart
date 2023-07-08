@@ -3,6 +3,11 @@ import 'package:comics_app/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// class [ComicGrid]
+///
+/// This widget displays a grid of comics using a `CustomScrollView` and a `SliverGrid`.
+///
+/// Use the state of the `ComicBloc` to get the comics data and build the grid.
 class ComicGrid extends StatelessWidget {
   const ComicGrid({super.key});
 
@@ -35,6 +40,10 @@ class ComicGrid extends StatelessWidget {
     );
   }
 
+  /// Calculates the number of columns for a grid based on the width of the screen.
+  /// Returns the calculated number of columns.
+  ///
+  /// [context]: The context of the application.
   int _calculateCrossAxisCount(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
 

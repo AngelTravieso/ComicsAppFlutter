@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// class [HeaderTitle]
+/// This widget represents the header title for the ComicBook app.
+///
+/// It displays the text 'ComicBook' with a custom font and styling.
 class HeaderTitle extends StatelessWidget {
   const HeaderTitle({super.key});
 

@@ -8,3 +8,9 @@ abstract class ComicEvent extends Equatable {
 }
 
 class GetComicData extends ComicEvent {}
+
+class GetComicDetail extends ComicEvent {
+  final String comicUrl;
+
+  const GetComicDetail(this.comicUrl);
+}

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// class [CustomOutlinedButton]
+/// This widget represents a custom outlined button with an icon and label.
+///
+/// It can be used to trigger an action specified by the [onPressed] callback.
+/// The button can have an optional [selectedColor] to override the default primary color.
 class CustomOutlinedButton extends StatelessWidget {
   final Function onPressed;
   final IconData icon;

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 class ComicsScreen extends StatelessWidget {
+  static const name = 'comics-screen';
   const ComicsScreen({super.key});
 
   @override
@@ -19,25 +20,13 @@ class _ComicsView extends StatelessWidget {
     context.read<ComicBloc>().getComicData();
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10),
+      body: Layout(
         child: BlocBuilder<ComicBloc, ComicState>(
           buildWhen: (previous, current) =>
               current.comicsData != previous.comicsData,
           builder: (context, state) {
             if (state.loadingData) {
-              return const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CircularProgressIndicator(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text('Loading data...')
-                  ],
-                ),
-              );
+              return const LoadingIndicator();
             }
 
             return Column(

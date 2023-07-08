@@ -1,11 +1,17 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:comics_app/config/helpers/helpers.dart';
 import 'package:comics_app/domain/model/models.dart';
+import 'package:comics_app/presentation/screens/detail_comic_screen.dart';
 import 'package:comics_app/presentation/widgets/widgets.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+/// class [ComicGridItem]
+/// This widget renders an element of the comics grid.
+///
+/// Displays the image, title, and date added for the comic.
+/// Clicking on the item navigates to the comic details screen.
 class ComicGridItem extends StatelessWidget {
   final Comic comic;
 
@@ -21,13 +27,8 @@ class ComicGridItem extends StatelessWidget {
         child: SizedBox(
           child: Column(
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 2,
-                  ),
-                ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   comic.image.originalUrl,
                   width: 180,
@@ -65,9 +66,10 @@ class ComicGridItem extends StatelessWidget {
           ),
         ),
         onTap: () {
-          print(comic.apiDetailUrl);
-
-          context.push('/comic_detail');
+          // print(comic.apiDetailUrl);
+          context.pushNamed(DetailComicScreen.name, queryParams: {
+            'apiDetailUrl': comic.apiDetailUrl,
+          });
         },
       ),
     );

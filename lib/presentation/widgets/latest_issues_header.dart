@@ -3,6 +3,11 @@ import 'package:comics_app/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// class [LatestIssuesHeader]
+/// This widget represents the header for the latest issues section.
+///
+/// It displays the title 'Latest Issues' along with buttons to switch between list and grid layout modes.
+/// The layout mode is controlled by the [LayoutBloc] and can be changed using the [changeLayoutMode] method.
 class LatestIssuesHeader extends StatelessWidget {
   const LatestIssuesHeader({super.key});
 
