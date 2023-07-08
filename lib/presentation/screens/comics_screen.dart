@@ -29,7 +29,16 @@ class _ComicsView extends StatelessWidget {
           builder: (context, state) {
             if (state.loadingData) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    CircularProgressIndicator(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('Loading data...')
+                  ],
+                ),
               );
             }
 
