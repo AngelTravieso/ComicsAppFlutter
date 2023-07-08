@@ -4,6 +4,7 @@ import 'package:comics_app/domain/model/models.dart';
 import 'package:comics_app/presentation/widgets/widgets.dart';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ComicGridItem extends StatelessWidget {
   final Comic comic;
@@ -15,52 +16,59 @@ class ComicGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        children: <Widget>[
-          FadeIn(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 2,
+    return GestureDetector(
+      child: SizedBox(
+        child: Column(
+          children: <Widget>[
+            FadeIn(
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 2,
+                  ),
+                ),
+                child: Image.network(
+                  comic.image.originalUrl,
+                  width: 180,
+                  height: 180,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+
+                    return const ComicImagePlaceholder();
+                  },
                 ),
               ),
-              child: Image.network(
-                comic.image.originalUrl,
-                width: 180,
-                height: 180,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-
-                  return const ComicImagePlaceholder();
-                },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                '${comic.name} ${comic.issueNumber}',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              '${comic.name} ${comic.issueNumber}',
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
+            Text(
+              DateFormatter.formatDate(
+                comic.dateAdded,
+              ),
               style: const TextStyle(
-                fontWeight: FontWeight.bold,
+                color: Colors.grey,
               ),
-            ),
-          ),
-          Text(
-            DateFormatter.formatDate(
-              comic.dateAdded,
-            ),
-            style: const TextStyle(
-              color: Colors.grey,
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
+      onTap: () {
+        print(comic.apiDetailUrl);
+
+        context.push('/comic_detail');
+      },
     );
   }
 }

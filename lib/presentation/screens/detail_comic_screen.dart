@@ -1,3 +1,4 @@
+import 'package:comics_app/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DetailComicScreen extends StatelessWidget {
@@ -6,19 +7,14 @@ class DetailComicScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detail'),
-      ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(10),
-        child: Column(
-          children: <Widget>[
-            Divider(
-              height: 2,
-            ),
-            Text('Teams'),
-            Text('Locations'),
-          ],
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              HeaderTitle(),
+            ],
+          ),
         ),
       ),
     );
