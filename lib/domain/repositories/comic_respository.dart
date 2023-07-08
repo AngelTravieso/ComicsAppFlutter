@@ -1,12 +1,11 @@
 import 'dart:io';
 
+import 'package:comics_app/config/constants/environment.dart';
 import 'package:comics_app/domain/model/models.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
 
 /// Class [ComicRepository]
 class ComicRepository {
-  final _baseUrl = dotenv.env['BASE_URL'];
   final _dio = Dio();
   final httpTimeout = const Duration(seconds: 20);
 
@@ -14,13 +13,13 @@ class ComicRepository {
   /// Returns an instance of [ComicModel] containing the comics data, or null if an error occurs.
   Future<ComicModel?> getComics() async {
     try {
-      final response = await _dio.get('${_baseUrl!}/issues',
+      final response = await _dio.get('${Environment.apiBaseUrl}/issues',
           options: Options(
             receiveTimeout: httpTimeout,
             sendTimeout: httpTimeout,
           ),
           queryParameters: {
-            'api_key': dotenv.env['API_KEY'],
+            'api_key': Environment.apiKey,
             'format': 'json',
           });
 
@@ -44,7 +43,7 @@ class ComicRepository {
             sendTimeout: httpTimeout,
           ),
           queryParameters: {
-            'api_key': dotenv.env['API_KEY'],
+            'api_key': Environment.apiKey,
             'format': 'json',
           });
 
