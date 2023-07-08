@@ -97,8 +97,8 @@ class Comic {
         image: Image.fromJson(json['image']),
         associatedImages: List<AssociatedImage>.from(
             json['associated_images'].map((x) => AssociatedImage.fromJson(x))),
-        issueNumber: json['issue_number'],
-        name: json['name'],
+        issueNumber: json['issue_number'] ?? 'no-number',
+        name: json['name'] ?? 'no-name',
         siteDetailUrl: json['site_detail_url'],
         storeDate: json['store_date'],
         volume: Volume.fromJson(json['volume']),

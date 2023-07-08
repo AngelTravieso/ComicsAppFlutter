@@ -12,7 +12,7 @@ class HeaderTitle extends StatelessWidget {
         'ComicBook',
         style: GoogleFonts.kanit().copyWith(
           fontSize: 40,
-          fontWeight: FontWeight.w100,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
