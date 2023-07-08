@@ -36,7 +36,7 @@ class ComicGrid extends StatelessWidget {
   }
 
   int _calculateCrossAxisCount(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
 
     if (screenWidth >= 600) {
       // Larger devices, 4 columns

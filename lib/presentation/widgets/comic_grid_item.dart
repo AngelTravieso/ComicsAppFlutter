@@ -16,12 +16,12 @@ class ComicGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: SizedBox(
-        child: Column(
-          children: <Widget>[
-            FadeIn(
-              child: Container(
+    return FadeIn(
+      child: GestureDetector(
+        child: SizedBox(
+          child: Column(
+            children: <Widget>[
+              Container(
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.black,
@@ -40,35 +40,36 @@ class ComicGridItem extends StatelessWidget {
                   },
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                '${comic.name} ${comic.issueNumber}',
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Text(
+                  '${comic.name} ${comic.issueNumber}',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            Text(
-              DateFormatter.formatDate(
-                comic.dateAdded,
-              ),
-              style: const TextStyle(
-                color: Colors.grey,
-              ),
-            )
-          ],
+              Text(
+                DateFormatter.formatDate(
+                  comic.dateAdded,
+                ),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.grey,
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-      onTap: () {
-        print(comic.apiDetailUrl);
+        onTap: () {
+          print(comic.apiDetailUrl);
 
-        context.push('/comic_detail');
-      },
+          context.push('/comic_detail');
+        },
+      ),
     );
   }
 }

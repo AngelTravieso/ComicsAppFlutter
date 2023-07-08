@@ -20,8 +20,12 @@ class ComicBloc extends Bloc<ComicEvent, ComicState> {
 
     try {
       final comics = await comicRepository.getComics();
-      print('data cargada');
-      print(comics?.statusCode);
+
+      if (kDebugMode) {
+        print('data loaded');
+        print(comics?.statusCode);
+      }
+
       emit(state.copyWith(
         loadingData: false,
         comicsData: comics,

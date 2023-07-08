@@ -1,10 +1,19 @@
 part of 'layout_bloc.dart';
 
-abstract class LayoutState extends Equatable {
-  const LayoutState();
-  
-  @override
-  List<Object> get props => [];
-}
+class LayoutState extends Equatable {
+  final bool isGridLayoutMode;
 
-class LayoutInitial extends LayoutState {}
+  const LayoutState({
+    this.isGridLayoutMode = true,
+  });
+
+  LayoutState copyWith({
+    bool? isGridLayoutMode,
+  }) =>
+      LayoutState(
+        isGridLayoutMode: isGridLayoutMode ?? this.isGridLayoutMode,
+      );
+
+  @override
+  List<Object> get props => [isGridLayoutMode];
+}

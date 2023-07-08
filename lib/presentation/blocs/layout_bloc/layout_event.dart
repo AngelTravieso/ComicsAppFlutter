@@ -6,3 +6,9 @@ abstract class LayoutEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class ChangeLayout extends LayoutEvent {
+  final bool isGridLayoutMode;
+
+  const ChangeLayout(this.isGridLayoutMode);
+}

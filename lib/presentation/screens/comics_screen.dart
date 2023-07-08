@@ -1,4 +1,5 @@
 import 'package:comics_app/presentation/blocs/comic_bloc/comic_bloc.dart';
+import 'package:comics_app/presentation/blocs/layout_bloc/layout_bloc.dart';
 import 'package:comics_app/presentation/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,7 @@ class ComicsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ComicBloc(),
-      child: _ComicsView(),
-    );
+    return _ComicsView();
   }
 }
 
@@ -47,8 +45,11 @@ class _ComicsView extends StatelessWidget {
                 const HeaderTitle(),
                 const LatestIssuesHeader(),
                 Expanded(
-                  child: ComicGrid(),
-                ),
+                    child: context.select(
+                  (LayoutBloc layoutBloc) => layoutBloc.state.isGridLayoutMode
+                      ? const ComicGrid()
+                      : const ComicList(),
+                )),
               ],
             );
           },
