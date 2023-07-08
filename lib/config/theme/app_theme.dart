@@ -26,6 +26,8 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorSchemeSeed: _colorThemes[selectedColor],
+      scaffoldBackgroundColor: Colors.grey[300],
+      dividerTheme: const DividerThemeData(space: 2.0),
     );
   }
 }

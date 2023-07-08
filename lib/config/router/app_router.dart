@@ -7,5 +7,9 @@ final appRouter = GoRouter(
       path: '/',
       builder: (context, state) => ComicsScreen(),
     ),
+    GoRoute(
+      path: '/comic_detail',
+      builder: (context, state) => DetailComicScreen(),
+    ),
   ],
 );
