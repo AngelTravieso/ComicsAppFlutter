@@ -57,7 +57,7 @@ class Comic {
   final String? description;
   final bool hasStaffReview;
   final int id;
-  final Image image;
+  final ComicImage image;
   final List<AssociatedImage> associatedImages;
   final String issueNumber;
   final String? name;
@@ -94,7 +94,7 @@ class Comic {
         description: json['description'],
         hasStaffReview: json['has_staff_review'],
         id: json['id'],
-        image: Image.fromJson(json['image']),
+        image: ComicImage.fromJson(json['image']),
         associatedImages: List<AssociatedImage>.from(
             json['associated_images'].map((x) => AssociatedImage.fromJson(x))),
         issueNumber: json['issue_number'] ?? 'no-number',
@@ -163,7 +163,7 @@ class AssociatedImage {
   }
 }
 
-class Image {
+class ComicImage {
   final String iconUrl;
   final String mediumUrl;
   final String screenUrl;
@@ -175,7 +175,7 @@ class Image {
   final String originalUrl;
   final String imageTags;
 
-  Image({
+  ComicImage({
     required this.iconUrl,
     required this.mediumUrl,
     required this.screenUrl,
@@ -188,7 +188,7 @@ class Image {
     required this.imageTags,
   });
 
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
+  factory ComicImage.fromJson(Map<String, dynamic> json) => ComicImage(
         iconUrl: json['icon_url'],
         mediumUrl: json['medium_url'],
         screenUrl: json['screen_url'],

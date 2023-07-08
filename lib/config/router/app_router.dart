@@ -5,11 +5,11 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => ComicsScreen(),
+      builder: (context, state) => const ComicsScreen(),
     ),
     GoRoute(
       path: '/comic_detail',
-      builder: (context, state) => DetailComicScreen(),
+      builder: (context, state) => const DetailComicScreen(),
     ),
   ],
 );

@@ -7,10 +7,10 @@ class DetailComicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail'),
+        title: const Text('Detail'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
+      body: const Padding(
+        padding: EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
             Divider(
