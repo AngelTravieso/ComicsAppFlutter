@@ -1,6 +1,9 @@
 import 'package:comics_app/config/router/app_router.dart';
 import 'package:comics_app/config/theme/app_theme.dart';
+import 'package:comics_app/presentation/blocs/comic_bloc/comic_bloc.dart';
+import 'package:comics_app/presentation/blocs/layout_bloc/layout_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
@@ -13,10 +16,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: appRouter,
-      theme: AppTheme(selectedColor: 4).getTheme(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ComicBloc>(
+          create: (_) => ComicBloc(),
+        ),
+        BlocProvider<LayoutBloc>(
+          create: (_) => LayoutBloc(),
+        ),
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: appRouter,
+        theme: AppTheme(selectedColor: 4).getTheme(),
+      ),
     );
   }
 }
