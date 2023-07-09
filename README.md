@@ -1,5 +1,8 @@
 **Comics App**
 
+![Comics App Logo](https://cdn.iconfinder.com/data/icons/pop-icons/6692/comic-objects-036-kaboom-512.png)
+
+
 This app uses the Comic Vine Gamespot API to fetch comic data. It is built using the BLoC state management pattern and GoRouter, following the principles of clean architecture.
 
 To use the app in debug mode, create a `.env` file with the following environment variables:
