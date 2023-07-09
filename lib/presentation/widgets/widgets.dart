@@ -11,6 +11,7 @@
 /// -LoadingIndicator
 /// -Layout
 /// - ComicListItem
+/// - DetailComicSection
 
 export 'custom_outlined_button.dart';
 export 'comic_list.dart';
@@ -22,3 +23,4 @@ export 'comic_image_placeholder.dart';
 export 'loading_indicator.dart';
 export 'layout.dart';
 export 'comic_list_item.dart';
+export 'detail_comic_section.dart';

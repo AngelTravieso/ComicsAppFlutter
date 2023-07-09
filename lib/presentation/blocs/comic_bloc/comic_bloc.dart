@@ -10,7 +10,7 @@ part 'comic_state.dart';
 /// Class [ComicBloc]
 class ComicBloc extends Bloc<ComicEvent, ComicState> {
   final comicRepository = ComicRepository();
-  ComicBloc() : super(const ComicState()) {
+  ComicBloc() : super(const ComicState(loadingData: true)) {
     on<GetComicData>(_onGetComicData);
     on<GetComicDetail>(_onGetComicDetail);
   }
@@ -44,6 +44,10 @@ class ComicBloc extends Bloc<ComicEvent, ComicState> {
   /// [emit]: The emitter used to emit a new state.
   void _onGetComicDetail(GetComicDetail event, Emitter<ComicState> emit) async {
     try {
+      emit(state.copyWith(
+        loadingData: true,
+      ));
+
       final comic = await comicRepository.getComicDetail(
         endpoint: event.comicUrl,
       );

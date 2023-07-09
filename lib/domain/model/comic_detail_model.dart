@@ -29,20 +29,31 @@ class ComicDetail {
         results: Results.fromJson(json['results']),
         version: json['version'],
       );
+
+  Map<String, dynamic> toJson() => {
+        'error': error,
+        'limit': limit,
+        'offset': offset,
+        'number_of_page_results': numberOfPageResults,
+        'number_of_total_results': numberOfTotalResults,
+        'status_code': statusCode,
+        'results': results.toJson(),
+        'version': version,
+      };
 }
 
 class Results {
   final dynamic aliases;
   final String apiDetailUrl;
   final List<AssociatedImages> associatedImages;
-  final List<ComicVolume> characterCredits;
+  final List<Volumes> characterCredits;
   final List<dynamic> characterDiedIn;
-  final List<ComicVolume> conceptCredits;
+  final List<Volumes> conceptCredits;
   final DateTime coverDate;
   final DateTime dateAdded;
   final DateTime dateLastUpdated;
   final dynamic deck;
-  final String description;
+  final String? description;
   final dynamic firstAppearanceCharacters;
   final dynamic firstAppearanceConcepts;
   final dynamic firstAppearanceLocations;
@@ -53,16 +64,16 @@ class Results {
   final int id;
   final Images image;
   final String issueNumber;
-  final List<ComicVolume> locationCredits;
-  final String name;
+  final List<Volumes> locationCredits;
+  final String? name;
   final List<dynamic> objectCredits;
-  final List<ComicVolume> personCredits;
+  final List<Volumes> personCredits;
   final String siteDetailUrl;
   final dynamic storeDate;
   final List<dynamic> storyArcCredits;
-  final List<dynamic> teamCredits;
+  final List<Volumes> teamCredits;
   final List<dynamic> teamDisbandedIn;
-  final ComicVolume volume;
+  final Volumes volume;
 
   Results({
     this.aliases,
@@ -75,7 +86,7 @@ class Results {
     required this.dateAdded,
     required this.dateLastUpdated,
     this.deck,
-    required this.description,
+    this.description,
     this.firstAppearanceCharacters,
     this.firstAppearanceConcepts,
     this.firstAppearanceLocations,
@@ -87,7 +98,7 @@ class Results {
     required this.image,
     required this.issueNumber,
     required this.locationCredits,
-    required this.name,
+    this.name,
     required this.objectCredits,
     required this.personCredits,
     required this.siteDetailUrl,
@@ -103,12 +114,12 @@ class Results {
         apiDetailUrl: json['api_detail_url'],
         associatedImages: List<AssociatedImages>.from(
             json['associated_images'].map((x) => AssociatedImages.fromJson(x))),
-        characterCredits: List<ComicVolume>.from(
-            json['character_credits'].map((x) => ComicVolume.fromJson(x))),
+        characterCredits: List<Volumes>.from(
+            json['character_credits'].map((x) => Volumes.fromJson(x))),
         characterDiedIn:
             List<dynamic>.from(json['character_died_in'].map((x) => x)),
-        conceptCredits: List<ComicVolume>.from(
-            json['concept_credits'].map((x) => ComicVolume.fromJson(x))),
+        conceptCredits: List<Volumes>.from(
+            json['concept_credits'].map((x) => Volumes.fromJson(x))),
         coverDate: DateTime.parse(json['cover_date']),
         dateAdded: DateTime.parse(json['date_added']),
         dateLastUpdated: DateTime.parse(json['date_last_updated']),
@@ -124,21 +135,61 @@ class Results {
         id: json['id'],
         image: Images.fromJson(json['image']),
         issueNumber: json['issue_number'],
-        locationCredits: List<ComicVolume>.from(
-            json['location_credits'].map((x) => ComicVolume.fromJson(x))),
+        locationCredits: List<Volumes>.from(
+            json['location_credits'].map((x) => Volumes.fromJson(x))),
         name: json['name'],
         objectCredits: List<dynamic>.from(json['object_credits'].map((x) => x)),
-        personCredits: List<ComicVolume>.from(
-            json['person_credits'].map((x) => ComicVolume.fromJson(x))),
+        personCredits: List<Volumes>.from(
+            json['person_credits'].map((x) => Volumes.fromJson(x))),
         siteDetailUrl: json['site_detail_url'],
         storeDate: json['store_date'],
         storyArcCredits:
             List<dynamic>.from(json['story_arc_credits'].map((x) => x)),
-        teamCredits: List<dynamic>.from(json['team_credits'].map((x) => x)),
+        teamCredits: List<Volumes>.from(json['team_credits'].map((x) => x)),
         teamDisbandedIn:
             List<dynamic>.from(json['team_disbanded_in'].map((x) => x)),
-        volume: ComicVolume.fromJson(json['volume']),
+        volume: Volumes.fromJson(json['volume']),
       );
+
+  Map<String, dynamic> toJson() => {
+        'aliases': aliases,
+        'api_detail_url': apiDetailUrl,
+        'associated_images':
+            List<dynamic>.from(associatedImages.map((x) => x.toJson())),
+        'character_credits':
+            List<dynamic>.from(characterCredits.map((x) => x.toJson())),
+        'character_died_in': List<dynamic>.from(characterDiedIn.map((x) => x)),
+        'concept_credits':
+            List<dynamic>.from(conceptCredits.map((x) => x.toJson())),
+        'cover_date':
+            '${coverDate.year.toString().padLeft(4, '0')}-${coverDate.month.toString().padLeft(2, '0')}-${coverDate.day.toString().padLeft(2, '0')}',
+        'date_added': dateAdded.toIso8601String(),
+        'date_last_updated': dateLastUpdated.toIso8601String(),
+        'deck': deck,
+        'description': description,
+        'first_appearance_characters': firstAppearanceCharacters,
+        'first_appearance_concepts': firstAppearanceConcepts,
+        'first_appearance_locations': firstAppearanceLocations,
+        'first_appearance_objects': firstAppearanceObjects,
+        'first_appearance_storyarcs': firstAppearanceStoryarcs,
+        'first_appearance_teams': firstAppearanceTeams,
+        'has_staff_review': hasStaffReview,
+        'id': id,
+        'image': image.toJson(),
+        'issue_number': issueNumber,
+        'location_credits':
+            List<dynamic>.from(locationCredits.map((x) => x.toJson())),
+        'name': name,
+        'object_credits': List<dynamic>.from(objectCredits.map((x) => x)),
+        'person_credits':
+            List<dynamic>.from(personCredits.map((x) => x.toJson())),
+        'site_detail_url': siteDetailUrl,
+        'store_date': storeDate,
+        'story_arc_credits': List<dynamic>.from(storyArcCredits.map((x) => x)),
+        'team_credits': List<dynamic>.from(teamCredits.map((x) => x)),
+        'team_disbanded_in': List<dynamic>.from(teamDisbandedIn.map((x) => x)),
+        'volume': volume.toJson(),
+      };
 }
 
 class AssociatedImages {
@@ -161,16 +212,23 @@ class AssociatedImages {
         caption: json['caption'],
         imageTags: json['image_tags'],
       );
+
+  Map<String, dynamic> toJson() => {
+        'original_url': originalUrl,
+        'id': id,
+        'caption': caption,
+        'image_tags': imageTags,
+      };
 }
 
-class ComicVolume {
+class Volumes {
   final String apiDetailUrl;
   final int id;
   final String name;
   final String siteDetailUrl;
   final String? role;
 
-  ComicVolume({
+  Volumes({
     required this.apiDetailUrl,
     required this.id,
     required this.name,
@@ -178,13 +236,21 @@ class ComicVolume {
     this.role,
   });
 
-  factory ComicVolume.fromJson(Map<String, dynamic> json) => ComicVolume(
+  factory Volumes.fromJson(Map<String, dynamic> json) => Volumes(
         apiDetailUrl: json['api_detail_url'],
         id: json['id'],
         name: json['name'],
         siteDetailUrl: json['site_detail_url'],
         role: json['role'],
       );
+
+  Map<String, dynamic> toJson() => {
+        'api_detail_url': apiDetailUrl,
+        'id': id,
+        'name': name,
+        'site_detail_url': siteDetailUrl,
+        'role': role,
+      };
 }
 
 class Images {
@@ -224,4 +290,17 @@ class Images {
         originalUrl: json['original_url'],
         imageTags: json['image_tags'],
       );
+
+  Map<String, dynamic> toJson() => {
+        'icon_url': iconUrl,
+        'medium_url': mediumUrl,
+        'screen_url': screenUrl,
+        'screen_large_url': screenLargeUrl,
+        'small_url': smallUrl,
+        'super_url': superUrl,
+        'thumb_url': thumbUrl,
+        'tiny_url': tinyUrl,
+        'original_url': originalUrl,
+        'image_tags': imageTags,
+      };
 }

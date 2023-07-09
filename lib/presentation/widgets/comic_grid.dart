@@ -21,7 +21,7 @@ class ComicGrid extends StatelessWidget {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: _calculateCrossAxisCount(context),
                 crossAxisSpacing: 10,
-                mainAxisExtent: 300,
+                mainAxisExtent: 250,
               ),
               delegate: SliverChildBuilderDelegate(
                 childCount: comicBloc.state.comicsData?.limit,
@@ -45,7 +45,7 @@ class ComicGrid extends StatelessWidget {
   ///
   /// [context]: The context of the application.
   int _calculateCrossAxisCount(BuildContext context) {
-    final screenWidth = MediaQuery.sizeOf(context).width;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     if (screenWidth >= 600) {
       // Larger devices, 4 columns

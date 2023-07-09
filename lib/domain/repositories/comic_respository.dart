@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:comics_app/config/constants/environment.dart';
 import 'package:comics_app/domain/model/models.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 /// Class [ComicRepository]
 class ComicRepository {
   final _dio = Dio();
-  final httpTimeout = const Duration(seconds: 20);
+  final httpTimeout = const Duration(seconds: 60);
 
   /// Gets a list of comics from an external API.
   /// Returns an instance of [ComicModel] containing the comics data, or null if an error occurs.
@@ -28,7 +29,13 @@ class ComicRepository {
       } else {
         return null;
       }
-    } catch (err) {
+    } on DioException catch (err) {
+      if (kDebugMode) {
+        print(err.error);
+        print(err.message);
+        print(err.stackTrace);
+      }
+
       throw Exception('Error getting comics: $err');
     }
   }
@@ -52,7 +59,13 @@ class ComicRepository {
       } else {
         return null;
       }
-    } catch (err) {
+    } on DioException catch (err) {
+      if (kDebugMode) {
+        print(err.error);
+        print(err.message);
+        print(err.stackTrace);
+      }
+
       throw Exception('Error getting comic detail: $err');
     }
   }
