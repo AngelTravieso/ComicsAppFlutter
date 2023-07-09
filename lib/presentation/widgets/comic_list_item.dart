@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:comics_app/config/helpers/helpers.dart';
 import 'package:comics_app/domain/model/models.dart';
+import 'package:comics_app/presentation/screens/screens.dart';
 import 'package:comics_app/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -68,9 +69,9 @@ class ComicListItem extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {
-        context.push('/comic_detail');
-      },
+      onTap: () => context.pushNamed(DetailComicScreen.name, queryParams: {
+        'apiDetailUrl': comic.apiDetailUrl,
+      }),
     );
   }
 }

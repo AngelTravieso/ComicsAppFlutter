@@ -65,8 +65,7 @@ class ComicGridItem extends StatelessWidget {
             ],
           ),
         ),
-        onTap: () async =>
-            context.pushNamed(DetailComicScreen.name, queryParams: {
+        onTap: () => context.pushNamed(DetailComicScreen.name, queryParams: {
           'apiDetailUrl': comic.apiDetailUrl,
         }),
       ),
