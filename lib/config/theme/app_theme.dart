@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+// Define a custom color for the theme
 const Color _customColor = Color(0xFF5C11D4);
 
+// Define a list of color themes
 const List<Color> _colorThemes = [
   _customColor,
   Colors.blue,
@@ -16,6 +18,7 @@ const List<Color> _colorThemes = [
 class AppTheme {
   final int selectedColor;
 
+  // Initialize the AppTheme with a selected color index
   AppTheme({this.selectedColor = 0})
       : assert(
           selectedColor >= 0 && selectedColor < _colorThemes.length - 1,
@@ -23,6 +26,7 @@ class AppTheme {
         );
 
   ThemeData getTheme() {
+    // Create a ThemeData object with the selected color and other theme properties
     return ThemeData(
       useMaterial3: true,
       colorSchemeSeed: _colorThemes[selectedColor],

@@ -2,6 +2,11 @@ import 'package:comics_app/config/constants/constants.dart';
 import 'package:comics_app/domain/model/models.dart';
 import 'package:flutter/material.dart';
 
+/// class [DetailComicSection]
+/// This widget represents a section of comic details.
+///
+/// It displays the section title, a divider, and the content
+/// based on the specified [comic] and [section].
 class DetailComicSection extends StatelessWidget {
   final String title;
   final Results comic;

@@ -4,6 +4,11 @@ import 'package:comics_app/presentation/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
+/// class [ComicsScreen]
+///
+/// It uses the [ComicBloc] to fetch the comic data and displays
+/// the list of comics in either a grid or list layout based on the
+/// state of the [LayoutBloc].
 class ComicsScreen extends StatelessWidget {
   static const name = 'comics-screen';
   const ComicsScreen({super.key});
