@@ -1,4 +1,5 @@
 import 'package:comics_app/presentation/screens/screens.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
@@ -12,11 +13,20 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/comic_detail',
       name: DetailComicScreen.name,
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         final comicDetailUrl = state.queryParams['apiDetailUrl'];
 
-        return DetailComicScreen(
-          apiDetailurl: comicDetailUrl!,
+        return CustomTransitionPage(
+          child: DetailComicScreen(
+            apiDetailurl: comicDetailUrl!,
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity:
+                  CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+              child: child,
+            );
+          },
         );
       },
     ),

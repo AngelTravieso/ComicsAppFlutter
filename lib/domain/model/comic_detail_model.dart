@@ -71,7 +71,7 @@ class Results {
   final String siteDetailUrl;
   final dynamic storeDate;
   final List<dynamic> storyArcCredits;
-  final List<Volumes> teamCredits;
+  final List<dynamic> teamCredits;
   final List<dynamic> teamDisbandedIn;
   final Volumes volume;
 

@@ -43,8 +43,9 @@ class DetailComicSection extends StatelessWidget {
         sectionItems = comic.characterCredits
             .map(
               (item) => ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.circle,
+                  color: Colors.purple[800],
                   size: 10,
                 ),
                 title: Text(item.name),
@@ -56,8 +57,9 @@ class DetailComicSection extends StatelessWidget {
         sectionItems = comic.teamCredits
             .map(
               (item) => ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.circle,
+                  color: Colors.blue[800],
                   size: 10,
                 ),
                 title: Text(item.name),
@@ -69,8 +71,9 @@ class DetailComicSection extends StatelessWidget {
         sectionItems = comic.locationCredits
             .map(
               (item) => ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.circle,
+                  color: Colors.green[800],
                   size: 10,
                 ),
                 title: Text(item.name),
@@ -88,7 +91,10 @@ class DetailComicSection extends StatelessWidget {
         if (sectionItems.isNotEmpty) ...sectionItems,
         if (sectionItems.isEmpty)
           ListTile(
-            leading: const Icon(Icons.close),
+            leading: const Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
             title: Text(
               'No ${section.name} available',
               style: const TextStyle(fontSize: 16),
